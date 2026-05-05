@@ -225,11 +225,6 @@ export function shouldProcessPseudos(doc = document) {
 var __siblingCounters = new WeakMap() // parentElement -> Map<counterName, number>
 var __pseudoEpoch = -1
 
-/** Remove only enclosing double-quoted tokens from CSS content (keeps single quotes). */
-function unquoteDoubleStrings(s) {
-  return (s || '').replace(/"([^"]*)"/g, '$1')
-}
-
 /**
  * Concatena tokens de CSS `content` (cadenas y resultados de counter()/counters())
  * sin el whitespace que los separa en el source — el browser concatena tokens
@@ -521,11 +516,33 @@ const hasExplicitContent = !isNoExplicitContent && cleanContent !== ''
         continue
       }
 
+      // SVG-as-<img> resolves system fonts (ui-sans-serif, system-ui) with
+      // metrics that differ from the live document; multi-char inline pseudo
+      // text (e.g. ' Pro', ' (sale!)') can push the host past its wrap point
+      // in the rasterized PNG even when the live DOM shows a single line.
+      // Pin white-space:nowrap on the host AND on the pseudo span itself when
+      // live is one line — the span carries an explicit `white-space: normal`
+      // from its style snapshot, which would otherwise break inheritance.
+      // Gate: skip single-char (icon) and url() pseudos — wrap impossible there.
+      let pinNowrap = false
+      if (hasExplicitContent && !isIconFont2 && cleanContent.length > 1 && !cleanContent.startsWith('url(')) {
+        const hostStyle = getStyle(source)
+        const fs = parseFloat(hostStyle.fontSize) || 16
+        let lh = parseFloat(hostStyle.lineHeight)
+        if (!Number.isFinite(lh)) lh = fs * 1.5
+        const rect = source.getBoundingClientRect()
+        if (rect.height < lh * 1.6) {
+          clone.style.whiteSpace = 'nowrap'
+          pinNowrap = true
+        }
+      }
+
       const pseudoEl = document.createElement('span')
       pseudoEl.dataset.snapdomPseudo = pseudo
       // pseudoEl.style.display = 'inline'
       // pseudoEl.style.verticalAlign = 'baseline'
       pseudoEl.style.pointerEvents = 'none'
+      if (pinNowrap) pseudoEl.style.whiteSpace = 'nowrap'
       const snapshot = snapshotComputedStyle(style)
       const key = getStyleKey(snapshot, 'span')
       sessionCache.styleMap.set(pseudoEl, key)
