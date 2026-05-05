@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. 
 
+#### [v2.12.0](https://github.com/zumerlab/snapdom/compare/v2.9.0...v2.12.0)
+
+> 5 May 2026
+
+- feat(plugin)!: rename prompt-export to agent-map, focused on visual agents [`cd5ca18`](https://github.com/zumerlab/snapdom/commit/cd5ca18467873c36df2c0a5b017d877720e18e31)
+- update Mr SnapDOM theme [`d9fb7bc`](https://github.com/zumerlab/snapdom/commit/d9fb7bca21ee2d821c03fa72b2409d5090f15ade)
+- feat(plugin: prompt-export): richer element map for LLM agents [`dd0769a`](https://github.com/zumerlab/snapdom/commit/dd0769aea7587a0ebaae21977723e9d8e4b8da49)
+- html2canvas is not good [`4002631`](https://github.com/zumerlab/snapdom/commit/4002631bcdae4518b2fcce81cf6a6df3e2d0c1e0)
+- feat(plugin: prompt-export): default include omits image; +benchmark section [`7adc87f`](https://github.com/zumerlab/snapdom/commit/7adc87f54955379d5891759c050e9fc38610ba00)
+- update html-in-canva to new API [`935069a`](https://github.com/zumerlab/snapdom/commit/935069aaa3effbfb08b8d49cb41f554979a218ba)
+- Añadir prueba de regresión para el problema #235: corregir el renderizado de `counter(x) ")"` sin espacios adicionales. [`6e209e8`](https://github.com/zumerlab/snapdom/commit/6e209e8ba1c91fddf8ba7225b409f74b366e19e4)
+- feat(clone): enhance SVG handling by preventing var() materialization in templates. See #408 [`5d566fa`](https://github.com/zumerlab/snapdom/commit/5d566fa610ee0e718a45b3311fdc46b4067b5c55)
+- test(visual): skip suite when demos/ folder is absent [`652693b`](https://github.com/zumerlab/snapdom/commit/652693b3b78c10ce89f741cdb189f601fe2aa687)
+
+
+
 #### [v2.9.0](https://github.com/zumerlab/snapdom/compare/v2.8.0...v2.9.0)
 
 > 23 April 2026
