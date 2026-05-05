@@ -1,20 +1,21 @@
+// Drop-in replacement for snapdom/vitest.config.js.
+// Adds snapdiff file-system commands to the existing browser config.
+
 import { defineConfig } from 'vitest/config'
+import { snapDiffCommands } from '@zumer/snapdiff/vitest'
 
 export default defineConfig({
   test: {
     browser: {
       enabled: true,
       provider: 'playwright',
-      // https://vitest.dev/guide/browser/playwright
-      instances: [
-        { browser: 'chromium' },
-      ],
+      screenshotFailures: false, 
+      instances: [{ browser: 'chromium' }],
+      commands: snapDiffCommands({ baseDir: '__snapshots__/visual' }),
     },
     coverage: {
-      provider: 'v8', // o 'istanbul'
-      include: [
-        'src/**/*.js',      // Solo archivos JS dentro de src/
-      ],
+      provider: 'v8',
+      include: ['src/**/*.js'],
     },
   },
 })
