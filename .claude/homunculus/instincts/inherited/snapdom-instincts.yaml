@@ -1,0 +1,317 @@
+# Instincts generated from https://github.com/lllyyysss77/snapdom
+# Generated: 2026-08-02T17:24:23.518Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: snapdom-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/lllyyysss77/snapdom
+---
+
+# Snapdom Commit Length
+
+## Action
+
+Keep commit messages concise (~47 characters)
+
+## Evidence
+
+- Average commit message length: 47 chars
+- Based on 2 commits
+
+---
+id: snapdom-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/lllyyysss77/snapdom
+---
+
+# Snapdom Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: snapdom-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/lllyyysss77/snapdom
+---
+
+# Snapdom Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: snapdom-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/lllyyysss77/snapdom
+---
+
+# Snapdom Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: snapdom-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/lllyyysss77/snapdom
+---
+
+# Snapdom Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: snapdom-instinct-file-naming-camelCase
+trigger: "When creating a new file in the codebase"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct File Naming CamelCase
+
+## Action
+
+Name the file using camelCase format
+
+## Evidence
+
+- Pattern in namingConventions.files: camelCase
+
+---
+id: snapdom-instinct-function-naming-camelCase
+trigger: "When defining a new function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Function Naming CamelCase
+
+## Action
+
+Name the function using camelCase format
+
+## Evidence
+
+- Pattern in namingConventions.functions: camelCase
+
+---
+id: snapdom-instinct-class-naming-PascalCase
+trigger: "When defining a new class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Class Naming PascalCase
+
+## Action
+
+Name the class using PascalCase format
+
+## Evidence
+
+- Pattern in namingConventions.classes: PascalCase
+
+---
+id: snapdom-instinct-constant-naming-screaming-snake-case
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Constant Naming Screaming Snake Case
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE format
+
+## Evidence
+
+- Pattern in namingConventions.constants: SCREAMING_SNAKE_CASE
+
+---
+id: snapdom-instinct-import-style-relative
+trigger: "When importing modules in JavaScript files"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Import Style Relative
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in importStyle: relative
+
+---
+id: snapdom-instinct-export-style-named
+trigger: "When exporting functions, classes, or constants"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Export Style Named
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in exportStyle: named
+
+---
+id: snapdom-instinct-test-location-separate
+trigger: "When adding new tests"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Test Location Separate
+
+## Action
+
+Place test files in the separate __tests__ folder
+
+## Evidence
+
+- Pattern in folderStructure.testLocation: separate
+- commonFolders includes __tests__
+
+---
+id: snapdom-instinct-test-src-structure
+trigger: "When organizing source and test code"
+confidence: 0.9
+domain: architecture
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Test Src Structure
+
+## Action
+
+Keep source code in src/ and tests in __tests__/
+
+## Evidence
+
+- Pattern in commonFolders: src, __tests__
+
+---
+id: snapdom-instinct-commit-prefix-fix
+trigger: "When committing a bug fix"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Commit Prefix Fix
+
+## Action
+
+Prefix the commit message with 'fix' (e.g., fix(module): ...)
+
+## Evidence
+
+- Pattern in commits.prefixes: fix
+- Example: fix(fonts): ...
+
+---
+id: snapdom-instinct-commit-format-scope
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Commit Format Scope
+
+## Action
+
+Use the format 'type(scope): message' (e.g., fix(fonts): ...)
+
+## Evidence
+
+- Example commit: fix(fonts): keep a custom @font-face ...
+
+---
+id: snapdom-instinct-error-handling-try-catch
+trigger: "When handling errors in JavaScript code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: lllyyysss77/snapdom
+---
+
+# Snapdom Instinct Error Handling Try Catch
+
+## Action
+
+Use try-catch blocks for error handling
+
+## Evidence
+
+- Pattern in errorHandling.style: try-catch
+
