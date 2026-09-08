@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. 
 
+#### [v2.24.16](https://github.com/zumerlab/snapdom/compare/v2.24.15...v2.24.16)
+
+> 8 September 2026
+
+- exposed internal visual demos for SnapDOM  testing and add new tests [`5766151`](https://github.com/zumerlab/snapdom/commit/5766151f8867eb2e64a6321a0af6f01fe25d65f0)
+- fix: stop discarding a whole stylesheet when one family looks like an icon font [`a154f18`](https://github.com/zumerlab/snapdom/commit/a154f18a7acd24e511f2a8abdefab5a765b5ec51)
+- docs: acknowledge open-source program support [`5b30335`](https://github.com/zumerlab/snapdom/commit/5b3033597e8218a33a2465e7c8bf31c5527ad663)
+
+
 #### [v2.24.15](https://github.com/zumerlab/snapdom/compare/v2.24.12...v2.24.15)
 
 > 30 August 2026
