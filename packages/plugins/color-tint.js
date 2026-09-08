@@ -19,7 +19,9 @@ export function colorTint(options = {}) {
 
     async afterClone(context) {
       const root = context.clone;
-      if (!root || !(root instanceof HTMLElement)) return;
+      // Realm-agnostic: a clone rooted in a same-origin iframe is not an instance of this
+      // window's HTMLElement (#494).
+      if (!root || root.nodeType !== 1 || root.namespaceURI !== 'http://www.w3.org/1999/xhtml') return;
       root.style.position = 'relative';
       const overlay = document.createElement('div');
       overlay.style.position = 'absolute';
