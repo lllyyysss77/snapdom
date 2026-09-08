@@ -12,6 +12,7 @@ import { resolveBlobUrlsInTree } from '../utils/clone.helpers.js'
 import { stabilizeLayout, forceContentVisibility } from '../utils/prepare.helpers.js'
 import { resolveClipRect, freezeViewportPositioned } from '../utils/capture.helpers.js'
 import { nextFrame } from '../utils/browser.js'
+import { isShadowRoot } from '../utils/dom.js'
 
 const visibilityWarmups = new Set()
 
@@ -235,7 +236,7 @@ export async function prepareClone(element, options = {}) {
   for (const [node, key] of sessionCache.styleMap.entries()) {
     if (node.tagName === 'STYLE') continue
     /* c8 ignore next 4 */
-    if (node.getRootNode && node.getRootNode() instanceof ShadowRoot) {
+    if (node.getRootNode && isShadowRoot(node.getRootNode())) {
       node.setAttribute('style', key.replace(/;/g, '; '))
       continue
     }

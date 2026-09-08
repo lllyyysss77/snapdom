@@ -1,3 +1,4 @@
+import { isHTMLElement } from './dom.js'
 /**
  * Helper utilities for preparing DOM clones
  * @module utils/prepare.helpers
@@ -47,7 +48,7 @@ export function forceContentVisibility(root) {
   try {
     const all = root.querySelectorAll('*')
     for (const el of all) {
-      if (!(el instanceof HTMLElement)) continue
+      if (!isHTMLElement(el)) continue
       const cv = el.style.contentVisibility || ''
       const cs = getComputedStyle(el)
       const computed = cs.contentVisibility || cs.getPropertyValue('content-visibility') || ''
@@ -57,7 +58,7 @@ export function forceContentVisibility(root) {
       }
     }
     // Check root itself
-    if (root instanceof HTMLElement) {
+    if (isHTMLElement(root)) {
       const cs = getComputedStyle(root)
       const computed = cs.contentVisibility || cs.getPropertyValue('content-visibility') || ''
       if (computed === 'auto') {

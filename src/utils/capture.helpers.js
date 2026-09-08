@@ -9,8 +9,8 @@ import {
   parseTransformOriginPx,
   readIndividualTransforms
 } from './transforms.helpers.js'
+import { HTML_NS, isHTMLTag, isSVGElement, isShadowRoot } from './dom.js'
 
-const HTML_NS = 'http://www.w3.org/1999/xhtml'
 const viewportFrozenClones = new WeakSet()
 
 /**
@@ -47,7 +47,7 @@ export function resolveClipRect(element, clip) {
 function composedParent(n) {
   if (n.parentElement) return n.parentElement
   const rn = n.getRootNode && n.getRootNode()
-  return rn instanceof ShadowRoot ? rn.host : null
+  return isShadowRoot(rn) ? rn.host : null
 }
 
 function composedContains(root, node) {
@@ -148,7 +148,7 @@ export function freezeViewportPositioned(root, cloneRoot, nodeMap, styleCache, e
       w = /** @type {HTMLElement} */ (orig).offsetWidth || r.width
       h = /** @type {HTMLElement} */ (orig).offsetHeight || r.height
     }
-    const inShadow = orig.getRootNode && orig.getRootNode() instanceof ShadowRoot
+    const inShadow = orig.getRootNode && isShadowRoot(orig.getRootNode())
     let baseR = rootR, baseBL = root.clientLeft || 0, baseBT = root.clientTop || 0
     if (inShadow) {
       const cb = findCBAncestor(orig, root)
@@ -489,13 +489,7 @@ function authorHasExplicitSize(el) {
  * @param {Element} el
  */
 function isReplacedElement(el) {
-  return el instanceof HTMLImageElement ||
-    el instanceof HTMLCanvasElement ||
-    el instanceof HTMLVideoElement ||
-    el instanceof HTMLIFrameElement ||
-    el instanceof SVGElement ||
-    el instanceof HTMLObjectElement ||
-    el instanceof HTMLEmbedElement
+  return isHTMLTag(el, 'img', 'canvas', 'video', 'iframe', 'object', 'embed') || isSVGElement(el)
 }
 
 /**

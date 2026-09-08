@@ -18,12 +18,13 @@
  */
 
 import { hasExternalMutation } from '../modules/styles.js'
+import { isHTMLTag } from '../utils/dom.js'
 
 const burstStates = new WeakMap()
 
 function trackVideos(element, state, onMediaDirty) {
   const videos = new Set()
-  if (element instanceof HTMLVideoElement) videos.add(element)
+  if (isHTMLTag(element, 'video')) videos.add(element)
   if (element.querySelectorAll) for (const v of element.querySelectorAll('video')) videos.add(v)
   for (const v of state.trackedVideos) {
     if (!videos.has(v)) {

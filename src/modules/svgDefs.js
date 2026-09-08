@@ -1,3 +1,4 @@
+import { isSVGRoot } from '../utils/dom.js'
 /**
  * Inline external <defs> and <symbol> dependencies needed by an SVG subtree (or multiple SVGs),
  * so that serialization does not break. Handles:
@@ -18,7 +19,7 @@ export function inlineExternalDefsAndSymbols(element, lookupRoot) {
 
   /** Collect all SVG roots under element (or element if it's an <svg>) */
   const svgRoots =
-    element instanceof SVGSVGElement
+    isSVGRoot(element)
       ? [element]
       : Array.from(element.querySelectorAll('svg'))
 

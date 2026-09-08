@@ -1,5 +1,6 @@
 import { getStyleKey, softensWidth, softenNeedsAutoWidth, shouldIgnoreProp, getStyle } from '../utils/index.js'
 import { cache } from '../core/cache.js'
+import { isHTMLElement } from '../utils/dom.js'
 
 const snapshotCache = new WeakMap()
 const snapshotKeyCache = new Map()
@@ -605,7 +606,7 @@ function autoContentHeight(el) {
  */
 function stripHeightForWrappers(el, cs, snap) {
   // 1) Respeta height inline del autor
-  if (el instanceof HTMLElement && el.style && el.style.height) return
+  if (isHTMLElement(el) && el.style && el.style.height) return
 
   // 2) Solo div/section/article/main/aside/header/footer/nav (no ol/ul/li: layout de listas)
   const tag = el.tagName && el.tagName.toLowerCase()
