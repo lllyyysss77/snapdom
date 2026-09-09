@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. 
 
+#### [v2.24.17](https://github.com/zumerlab/snapdom/compare/v2.24.16...v2.24.17)
+
+> 9 September 2026
+
+- fix: make DOM type checks realm-agnostic (ref #494) [`84359e5`](https://github.com/zumerlab/snapdom/commit/84359e557b369e1706e283119e53c4c163c3116a)
+- fix(color-tint): accept clone roots from another realm (ref #494) [`ed8c31a`](https://github.com/zumerlab/snapdom/commit/ed8c31ad114b1f425722f25e6e04924c56dad2fe)
+- chore(plugins): bump to 2.2.2 [`93a8e60`](https://github.com/zumerlab/snapdom/commit/93a8e60b67447da7ffd4524eadca02cd210a94e4)
+
 #### [v2.24.16](https://github.com/zumerlab/snapdom/compare/v2.24.15...v2.24.16)
 
 > 8 September 2026
