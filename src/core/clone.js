@@ -313,11 +313,22 @@ export async function deepClone(node, sessionCache, options) {
     sessionCache.nodeMap.set(clone, node)
     if (node.tagName === 'IMG') {
       freezeImgSrcset(node, clone)
-      // Record original image dimensions (pre-transform) for fallback usage when inlining fails
+      // Record original image dimensions (pre-transform) for fallback usage when inlining fails.
+      // #498: keep them fractional. `offsetWidth` is an integer, and the `min-width` written below
+      // from a rounded-up value (25.6px → 26px) beats the frozen `width`, grows the image and
+      // pushes the text after it past its frozen container (last word wraps). The computed
+      // style carries the used size at 1/1000px; offset/attribute/natural sizes stay as fallback.
       try {
-        const { width, height } = getUnscaledDimensions(node)
-        const w = Math.round(width || 0)
-        const h = Math.round(height || 0)
+        const cs = window.getComputedStyle(node)
+        let width = parseFloat(cs.width)
+        let height = parseFloat(cs.height)
+        if (!(width > 0) || !(height > 0)) {
+          const dims = getUnscaledDimensions(node)
+          if (!(width > 0)) width = dims.width
+          if (!(height > 0)) height = dims.height
+        }
+        const w = Math.round((width || 0) * 1000) / 1000
+        const h = Math.round((height || 0) * 1000) / 1000
         if (w) clone.dataset.snapdomWidth = String(w)
         if (h) clone.dataset.snapdomHeight = String(h)
       } catch (e) {
@@ -335,8 +346,8 @@ export async function deepClone(node, sessionCache, options) {
           return /%|auto/i.test(String(v || ''))
         }
 
-        const w = parseInt(clone.dataset.snapdomWidth || '0', 10)
-        const h = parseInt(clone.dataset.snapdomHeight || '0', 10)
+        const w = parseFloat(clone.dataset.snapdomWidth || '0') || 0
+        const h = parseFloat(clone.dataset.snapdomHeight || '0') || 0
 
         const needFreezeW = usesPercentOrAuto('width') || !w
         const needFreezeH = usesPercentOrAuto('height') || !h
