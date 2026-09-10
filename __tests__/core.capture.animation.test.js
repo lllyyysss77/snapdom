@@ -33,7 +33,7 @@ describe('entry keyframe animations do not blank the captured element', () => {
     expect(px[3]).toBeGreaterThan(200) // fully opaque, not the 0% frame
   })
 
-  it('preserves native suppression when a painted pseudo is currently display:none', async () => {
+  it('preserves native suppression when a painted pseudo is currently display:none', async (ctx) => {
     const style = mount(document.createElement('style'))
     style.textContent = `
       @keyframes snapPseudoDisappear {
@@ -55,7 +55,9 @@ describe('entry keyframe animations do not blank the captured element', () => {
     const [animation] = box.getAnimations({ subtree: true })
     animation.currentTime = 10000
     animation.pause()
-    expect(getComputedStyle(box, '::before').display).toBe('none')
+    // Gecko does not animate `display` in keyframes, so the pseudo never becomes
+    // non-generated there and the scenario cannot be set up: skip, not fail.
+    if (getComputedStyle(box, '::before').display !== 'none') ctx.skip()
     // The non-generated fast path must retain the suppression marker that the
     // previous materialization path added, or cloned CSS can replay the red frame.
 
