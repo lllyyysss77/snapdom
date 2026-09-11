@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. 
 
+#### [v2.24.18](https://github.com/zumerlab/snapdom/compare/v2.24.17...v2.24.18)
+
+> 10 September 2026
+
+- fix: three layout misalignments in pseudo boxes, scroll containers and images [`#498`](https://github.com/zumerlab/snapdom/pull/498)
+- fix(pseudo): skip non-generated pseudo-elements [`#497`](https://github.com/zumerlab/snapdom/pull/497)
+- fix(pseudo): preserve font style for icon glyphs [`#496`](https://github.com/zumerlab/snapdom/pull/496)
+
+
 #### [v2.24.17](https://github.com/zumerlab/snapdom/compare/v2.24.16...v2.24.17)
 
 > 9 September 2026
